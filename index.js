@@ -1,6 +1,11 @@
 function fetchBooks() {
-  // To pass the tests, don't forget to return your fetch!
-  
+  fetch("https://anapioficeandfire.com/api/books")
+    .then((resp) => resp.json())
+    .then((json) => {
+      console.log("Data fetched:", json);
+      renderBooks(json);
+    })
+    .catch((error) => console.error("Error fetching books:", error));
 }
 
 function renderBooks(books) {
@@ -10,6 +15,7 @@ function renderBooks(books) {
     h2.innerHTML = book.name;
     main.appendChild(h2);
   });
+  console.log('Rendering books:', books);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
